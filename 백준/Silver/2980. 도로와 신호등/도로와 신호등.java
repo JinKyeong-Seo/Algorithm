@@ -23,10 +23,10 @@ public class Main {
 		}
 		
 		for(int i=0; i<N; i++) {
-			sec+=signal[i+1]-signal[i];
-			int now = sec%(light[i][0]+light[i][1]);
-			if(now<light[i][0]) {
-				sec+=(light[i][0]-now);
+			sec+=signal[i+1]-signal[i]; // 다음 신호등까지 가는데 걸린 시간
+			int now = sec%(light[i][0]+light[i][1]); // 빨간불에 걸리는지 초록불에 걸리는지
+			if(now<light[i][0]) { 
+				sec+=(light[i][0]-now); // 빨간불이면 더함
 			}
 		}
 		sec+=(L-signal[N]);
