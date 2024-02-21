@@ -70,7 +70,7 @@ class LinkedList{
         node.right = next;
         node.left = curr;
 
-        if(pointNode.left == head) moveLeft(); // 맨 앞 pointNode에서 왼쪽에 추가해줬으면 pointNode 맨 앞으로 바꿔줘야 함
+        //if(pointNode.left == head) moveLeft(); // 맨 앞 pointNode에서 왼쪽에 추가해줬으면 pointNode 맨 앞으로 바꿔줘야 함
          
         size++;
     }
