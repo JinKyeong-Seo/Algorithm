@@ -50,28 +50,29 @@ public class Main {
         int[] dc = {0, 0, -1, 1};
         
 		while(!queue.isEmpty()) {
+			miro first = queue.poll();
         	for(int d=0; d<4; d++) {
-        		int nr = queue.peek().r+dr[d];
-        		int nc = queue.peek().c+dc[d];
+        		int nr = first.r+dr[d];
+        		int nc = first.c+dc[d];
         		if(nr>=0 && nr<R && nc>=0 && nc<C && arr[nr][nc]==0) {
-        			arr[nr][nc] = arr[queue.peek().r][queue.peek().c]+1;
+        			arr[nr][nc] = arr[first.r][first.c]+1;
         			queue.add(new miro(nr, nc));
         		}
         	}
-        	queue.poll();
         }
 		
 		while(!queue2.isEmpty()) {
+			miro first = queue2.poll();
         	for(int d=0; d<4; d++) {
-        		int nr = queue2.peek().r+dr[d];
-        		int nc = queue2.peek().c+dc[d];
+        		int nr = first.r+dr[d];
+        		int nc = first.c+dc[d];
         		if(nr<0 || nr>=R || nc<0 || nc>=C) {
-        			System.out.println(arr2[queue2.peek().r][queue2.peek().c]);
+        			System.out.println(arr2[first.r][first.c]);
         			return;
         		}
         		if(arr2[nr][nc]==0) {
-        			if(arr[nr][nc]==0 || arr[nr][nc]>(arr2[queue2.peek().r][queue2.peek().c]+1)) {
-        				arr2[nr][nc] = arr2[queue2.peek().r][queue2.peek().c]+1;
+        			if(arr[nr][nc]==0 || arr[nr][nc]>(arr2[first.r][first.c]+1)) {
+        				arr2[nr][nc] = arr2[first.r][first.c]+1;
         				queue2.add(new miro(nr, nc));
         			}
         			else {
@@ -79,7 +80,6 @@ public class Main {
         			}
         		}
         	}
-        	queue2.poll();
         }
 		
 		System.out.println("IMPOSSIBLE");
