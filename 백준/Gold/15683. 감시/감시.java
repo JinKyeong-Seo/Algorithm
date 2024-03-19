@@ -43,83 +43,43 @@ public class Main {
         	int order = p;
             for(int i=0; i<list.size(); i++) {
                 int[] now = list.get(i);
-                delta(now[0], now[1], now[2], order%4);
+                makeIDX(now[0], now[1], now[2], order%4);
                 order/=4;
             }
             min = Math.min(count, min);
         }
-        
+
         System.out.println(min);
-    }
+    }    
 
-    static public void delta(int n, int r, int c, int d) {
+    static public void makeIDX(int n, int r, int c, int d) {
+    	int[] idx;
         if (n == 1) {
-            int nr = r + dr[d];
-            int nc = c + dc[d];
-            while (nr >= 0 && nr < N && nc >= 0 && nc < M && check[nr][nc] != 6) {
-                if (check[nr][nc] == 0) {
-                	check[nr][nc] = 7;
-                	count--;
-                }
-                nr += dr[d];
-                nc += dc[d];
-            }
+        	idx = new int[]{d};
         } else if (n == 2) {
-        	int[] idx = new int[] {d, (d+2)%4};
-        	for(int i=0; i<2; i++) {
-        		int nr = r + dr[idx[i]];
-        		int nc = c + dc[idx[i]];
-        		while (nr >= 0 && nr < N && nc >= 0 && nc < M && check[nr][nc] != 6) {
-        			if (check[nr][nc] == 0) {
-        				check[nr][nc] = 7;
-        				count--;
-        			}
-        			nr += dr[idx[i]];
-        			nc += dc[idx[i]];
-        		}
-        	}
+        	idx = new int[] {d, (d+2)%4};
         } else if (n == 3) {
-        	int[] idx = new int[] {d, (d+1)%4};
-        	for(int i=0; i<2; i++) {
-        		int nr = r + dr[idx[i]];
-        		int nc = c + dc[idx[i]];
-        		while (nr >= 0 && nr < N && nc >= 0 && nc < M && check[nr][nc] != 6) {
-        			if (check[nr][nc] == 0) {
-        				check[nr][nc] = 7;
-        				count--;
-        			}
-        			nr += dr[idx[i]];
-        			nc += dc[idx[i]];
-        		}
-        	}
-
+        	idx = new int[] {d, (d+1)%4};
         } else if (n == 4) {
-        	int[] idx = new int[] {d, (d+1)%4, (d+2)%4};
-        	for(int i=0; i<3; i++) {
-        		int nr = r + dr[idx[i]];
-        		int nc = c + dc[idx[i]];
-        		while (nr >= 0 && nr < N && nc >= 0 && nc < M && check[nr][nc] != 6) {
-        			if (check[nr][nc] == 0) {
-        				check[nr][nc] = 7;
-        				count--;
-        			}
-        			nr += dr[idx[i]];
-        			nc += dc[idx[i]];
-        		}
-        	}
+        	idx = new int[] {d, (d+1)%4, (d+2)%4};
         } else {
-            for (int i = 0; i < 4; i++) {
-                int nr = r + dr[i];
-                int nc = c + dc[i];
-                while (nr >= 0 && nr < N && nc >= 0 && nc < M && check[nr][nc] != 6) {
-                    if (check[nr][nc] == 0) {
-                    	check[nr][nc] = 7;
-                    	count--;
-                    }
-                    nr += dr[i];
-                    nc += dc[i];
-                }
-            }
+        	idx = new int[] {0, 1, 2, 3};
         }
+        delta(r, c, idx);
+    }
+    
+    static public void delta(int r, int c, int[] idx) {
+    	for(int i=0; i<idx.length; i++) {
+    		int nr = r + dr[idx[i]];
+    		int nc = c + dc[idx[i]];
+    		while (nr >= 0 && nr < N && nc >= 0 && nc < M && check[nr][nc] != 6) {
+    			if (check[nr][nc] == 0) {
+    				check[nr][nc] = 7;
+    				count--;
+    			}
+    			nr += dr[idx[i]];
+    			nc += dc[idx[i]];
+    		}
+    	}
     }
 }
