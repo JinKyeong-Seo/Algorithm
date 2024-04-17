@@ -1,6 +1,6 @@
 # [level 3] 징검다리 건너기 - 64062 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/64062?language=java) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/64062) 
 
 ### 성능 요약
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 04월 17일 23:23:31
+2024년 04월 17일 23:24:07
 
 ### 문제 설명
 
