@@ -14,9 +14,8 @@ public class Main {
         String[] str = set.toArray(new String[set.size()]);
 
         Arrays.sort(str, (o1, o2)->{
-            int len = Integer.compare(o1.length(), o2.length());
-            if(len!=0) return len;
-            else return o1.compareTo(o2);
+            if(o1.length()==o2.length()) return o1.compareTo(o2);
+            else return o1.length()-o2.length();
         });
 
         for(int i=0; i<str.length; i++){
