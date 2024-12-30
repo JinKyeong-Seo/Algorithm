@@ -26,9 +26,8 @@ public class Main {
                 if(visited[0][n]==0){
                     visited[0][n] = 1;
                     visited[1][n] = n;
-                    dfs(n, arr[n], n, 2);
+                    dfs(n, arr[n], 2);
                 }
-
             }
 
             sb.append(res).append("\n");
@@ -36,14 +35,14 @@ public class Main {
         System.out.println(sb);
     }
 
-    public static void dfs(int start, int now, int n, int cnt){
+    public static void dfs(int start, int now, int cnt){
         if(start == now) {
             return;
         } else if(visited[0][now] == -1) {
             res += (cnt-1);
             return;
         } else if (visited[0][now] != 0) {
-            if(visited[1][now]==n){
+            if(visited[1][now]==start){
                 res += (visited[0][now]-1);
             } else {
                 res += (cnt-1);
@@ -52,7 +51,7 @@ public class Main {
         }
 
         visited[0][now] = cnt;
-        visited[1][now] = n;
-        dfs(start, arr[now], n, cnt+1);
+        visited[1][now] = start;
+        dfs(start, arr[now], cnt+1);
     }
 }
