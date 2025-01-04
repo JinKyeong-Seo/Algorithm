@@ -12,11 +12,11 @@
 
 ### 채점결과
 
-합계: 60.0 / 100.0
+합계: 100.0 / 100.0
 
 ### 제출 일자
 
-2024년 08월 18일 00:42:04
+2025년 01월 04일 22:53:26
 
 ### 문제 설명
 
@@ -119,12 +119,9 @@
 <th>FISH_TYPE</th>
 </tr>
 </thead>
-        <tbody><tr>
-<td>3</td>
-<td>50</td>
-<td>0</td>
-</tr>
-</tbody>
+        <tbody></tbody>
       </table>
+<p>| 3 | 50 | 0 |</p>
+
 
 > 출처: 프로그래머스 코딩 테스트 연습, https://school.programmers.co.kr/learn/challenges
