@@ -4,7 +4,6 @@ import java.util.*;
 public class Main {
     static BufferedReader br;
     static StringTokenizer st;
-    static Queue<int[]> queue;
     static boolean[][][] visited;
     static int[][] arr;
     static int W, H, K;
@@ -28,7 +27,10 @@ public class Main {
     }
 
     public static int bfs() {
-        queue = new LinkedList<>();
+        int[] dr = {1, 0, -1, 0, 1, 2, 2, 1, -1, -2, -2, -1};
+        int[] dc = {0, 1, 0, -1, 2, 1, -1, -2, 2, 1, -1, -2};
+
+        Queue<int[]> queue = new LinkedList<>();
         queue.add(new int[]{0, 0, 0, 0});
         visited[0][0][0] = true;
 
@@ -37,29 +39,29 @@ public class Main {
             if(now[0]==H-1 && now[1]==W-1) return now[3];
 
             // 1. 원숭이 이동
-            move(now, 0, 4, false);
+            for(int d=0; d<4; d++){
+                int nr = now[0] + dr[d];
+                int nc = now[1] + dc[d];
+                if (nr >= 0 && nr < H && nc >= 0 && nc < W && arr[nr][nc] != 1
+                        && !visited[nr][nc][now[2]]) {
+                    queue.add(new int[]{nr, nc, now[2], now[3]+1});
+                    visited[nr][nc][now[2]] = true;
+                }
+            }
 
             // 2. 말 이동
             if(now[2] >= K) continue;
-            move(now, 4, 12, true);
+            for(int d=4; d<12; d++){
+                int nr = now[0] + dr[d];
+                int nc = now[1] + dc[d];
+                if (nr >= 0 && nr < H && nc >= 0 && nc < W && arr[nr][nc] != 1
+                        && !visited[nr][nc][now[2]+1]) {
+                    queue.add(new int[]{nr, nc, now[2]+1, now[3]+1});
+                    visited[nr][nc][now[2]+1] = true;
+                }
+            }
         }
 
         return -1;
-    }
-
-    public static void move(int[] now, int st, int ed, boolean isHorse) {
-        int[] dr = {1, 0, -1, 0, 1, 2, 2, 1, -1, -2, -2, -1};
-        int[] dc = {0, 1, 0, -1, 2, 1, -1, -2, 2, 1, -1, -2};
-
-        int cnt = isHorse ? now[2]+1 : now[2];
-        for(int d=st; d<ed; d++){
-            int nr = now[0] + dr[d];
-            int nc = now[1] + dc[d];
-            if (nr >= 0 && nr < H && nc >= 0 && nc < W && arr[nr][nc] != 1
-                    && !visited[nr][nc][cnt]) {
-                queue.add(new int[]{nr, nc, cnt, now[3]+1});
-                visited[nr][nc][cnt] = true;
-            }
-        }
     }
 }
